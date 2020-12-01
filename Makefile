@@ -1,6 +1,7 @@
 .DEFAULT_GOAL			= va
 UTILS					= utils/sigsegv.cpp utils/color.cpp utils/check.cpp
 TESTS_PATH				= tests/
+SHELL					= bash
 
 MANDATORY_HEADER		= ../get_next_line.h
 MANDATORY_FILES			= ../get_next_line.c ../get_next_line_utils.c
@@ -82,12 +83,15 @@ $(V10MBONUS): v10M%:
 	@gcc -D BUFFER_SIZE=10000000 $(CFLAGS) -c $(BONUS_FILES)
 	@clang++ -D BUFFER_SIZE=10000000 $(CPPFLAGS) $(UTILS) $(TESTS_PATH)$*.cpp $(BONUS_OBJS) && $(VALGRIND) ./a.out && rm -f a.out
 
-mandatory_start:
+mandatory_start: update
 	@tput setaf 4 && echo [Mandatory]
 
-bonus_start:
-	@tput setaf 3 && echo -n "[Static = " && cat ../*bonus* | grep static | wc -l | tr -d '\n' && echo "]"
-	@tput setaf 5 && echo [Bonus]
+bonus_start: update
+	@tput setaf 3 && printf "[Static = " && cat ../*bonus* | grep static | wc -l | tr -d '\n' | xargs /bin/echo -n && printf "]\n"
+	@tput setaf 5 && /bin/echo [Bonus]
+
+update:
+	@git pull
 
 m: mandatory_start $(1MANDATORY) $(42MANDATORY) $(10MMANDATORY) cleanMandatory
 b: bonus_start $(1BONUS) $(42BONUS) $(10MBONUS) cleanBonus
