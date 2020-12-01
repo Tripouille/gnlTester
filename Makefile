@@ -1,4 +1,4 @@
-.DEFAULT_GOAL			= m
+.DEFAULT_GOAL			= va
 UTILS					= utils/sigsegv.cpp utils/color.cpp utils/check.cpp
 TESTS_PATH				= tests/
 
@@ -16,18 +16,18 @@ V42MANDATORY			= $(addprefix v42, $(MANDATORY))
 V10MMANDATORY			= $(addprefix v10M, $(MANDATORY))
 
 
-BONUS_HEADER		= ../get_next_line_bonus.h
-BONUS_FILES			= ../get_next_line_bonus.c ../get_next_line_utils_bonus.c
-BONUS_OBJS			= $(BONUS_FILES:../%.c=%.o)
+BONUS_HEADER			= ../get_next_line_bonus.h
+BONUS_FILES				= ../get_next_line_bonus.c ../get_next_line_utils_bonus.c
+BONUS_OBJS				= $(BONUS_FILES:../%.c=%.o)
 
-BONUS				= bonus
-1BONUS				= $(addprefix 1, $(BONUS))
-42BONUS				= $(addprefix 42, $(BONUS))
-10MBONUS			= $(addprefix 10M, $(BONUS))
+BONUS					= bonus
+1BONUS					= $(addprefix 1, $(BONUS))
+42BONUS					= $(addprefix 42, $(BONUS))
+10MBONUS				= $(addprefix 10M, $(BONUS))
 
-V1BONUS				= $(addprefix v1, $(BONUS))
-V42BONUS			= $(addprefix v42, $(BONUS))
-V10MBONUS			= $(addprefix v10M, $(BONUS))
+V1BONUS					= $(addprefix v1, $(BONUS))
+V42BONUS				= $(addprefix v42, $(BONUS))
+V10MBONUS				= $(addprefix v10M, $(BONUS))
 
 CFLAGS					= -Wall -Wextra -Werror
 CPPFLAGS				= -g3 -std=c++11 -I utils/ -I..
@@ -86,16 +86,18 @@ mandatory_start:
 	@tput setaf 4 && echo [Mandatory]
 
 bonus_start:
+	@tput setaf 3 && echo -n "[Static = " && cat ../*bonus* | grep static | wc -l | tr -d '\n' && echo "]"
 	@tput setaf 5 && echo [Bonus]
 
-m: mandatory_start $(1MANDATORY) $(42MANDATORY) $(10MMANDATORY) clean
-b: bonus_start $(1BONUS) $(42BONUS) $(10MBONUS) clean
+m: mandatory_start $(1MANDATORY) $(42MANDATORY) $(10MMANDATORY) cleanMandatory
+b: bonus_start $(1BONUS) $(42BONUS) $(10MBONUS) cleanBonus
 a: m b
-vm: mandatory_start $(V1MANDATORY) $(V42MANDATORY) $(V10MMANDATORY) clean
-vb: bonus_start $(V1BONUS) $(V42BONUS) $(V10MBONUS) clean
+
+vm: mandatory_start $(V1MANDATORY) $(V42MANDATORY) $(V10MMANDATORY) cleanMandatory
+vb: bonus_start $(V1BONUS) $(V42BONUS) $(V10MBONUS) cleanBonus
 va: vm vb
 
-clean:
-	@rm -rf $(MANDATORY_OBJS)
+cleanMandatory cleanBonus:
+	@rm -rf $(MANDATORY_OBJS) $(BONUS_OBJS)
 
-.PHONY:	mandatory_start m vm bonus_start b vb a va clean
+.PHONY:	mandatory_start m vm bonus_start b vb a va cleanMandatory cleanBonus
