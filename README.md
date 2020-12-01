@@ -2,7 +2,7 @@
 
 Clone this tester in your gnl repository.
 
-![alt text](https://i.imgur.com/tzGdlLG.png)
+![alt text](https://i.imgur.com/uupv1UH.png)
 
 # Commands
 make m = launch mandatory tests  
