@@ -1,8 +1,8 @@
 # gnlTester
 
-Clone this tester in your gnl repository.  
-![alt text](https://i.imgur.com/GPc3PyW.png)
+Clone this tester in your gnl repository.
 
+![alt text](https://i.imgur.com/tzGdlLG.png)
 
 # Commands
 make m = launch mandatory tests  
