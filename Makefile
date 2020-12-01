@@ -15,44 +15,72 @@ V1MANDATORY				= $(addprefix v1, $(MANDATORY))
 V42MANDATORY			= $(addprefix v42, $(MANDATORY))
 V10MMANDATORY			= $(addprefix v10M, $(MANDATORY))
 
-VSOPEN					= $(addprefix vs, $(MANDATORY)) $(addprefix vs, $(BONUS))
+
+BONUS_HEADER		= ../get_next_line_bonus.h
+BONUS_FILES			= ../get_next_line_bonus.c ../get_next_line_utils_bonus.c
+BONUS_OBJS			= $(BONUS_FILES:../%.c=%.o)
+
+BONUS				= bonus
+1BONUS				= $(addprefix 1, $(BONUS))
+42BONUS				= $(addprefix 42, $(BONUS))
+10MBONUS			= $(addprefix 10M, $(BONUS))
+
+V1BONUS				= $(addprefix v1, $(BONUS))
+V42BONUS			= $(addprefix v42, $(BONUS))
+V10MBONUS			= $(addprefix v10M, $(BONUS))
 
 CFLAGS					= -Wall -Wextra -Werror
 CPPFLAGS				= -g3 -std=c++11 -I utils/ -I..
 VALGRIND				= valgrind -q --leak-check=full --show-reachable=yes
 
-$(1MANDATORY): 1%: mandatory_start
+$(1MANDATORY): 1%:
 	@gcc -D BUFFER_SIZE=1 $(CFLAGS) -c $(MANDATORY_FILES)
 	@clang++ -D BUFFER_SIZE=1 $(CPPFLAGS) $(UTILS) $(TESTS_PATH)$*.cpp $(MANDATORY_OBJS) && ./a.out && rm -f a.out
 
-$(42MANDATORY): 42%: mandatory_start
+$(42MANDATORY): 42%:
 	@gcc -D BUFFER_SIZE=42 $(CFLAGS) -c $(MANDATORY_FILES)
 	@clang++ -D BUFFER_SIZE=42 $(CPPFLAGS) $(UTILS) $(TESTS_PATH)$*.cpp $(MANDATORY_OBJS) && ./a.out && rm -f a.out
 
-$(10MMANDATORY): 10M%: mandatory_start
+$(10MMANDATORY): 10M%:
 	@gcc -D BUFFER_SIZE=10000000 $(CFLAGS) -c $(MANDATORY_FILES)
 	@clang++ -D BUFFER_SIZE=10000000 $(CPPFLAGS) $(UTILS) $(TESTS_PATH)$*.cpp $(MANDATORY_OBJS) && ./a.out && rm -f a.out
 
-$(V1MANDATORY): v1%: mandatory_start
+$(V1MANDATORY): v1%:
 	@gcc -D BUFFER_SIZE=1 $(CFLAGS) -c $(MANDATORY_FILES)
 	@clang++ -D BUFFER_SIZE=1 $(CPPFLAGS) $(UTILS) $(TESTS_PATH)$*.cpp $(MANDATORY_OBJS) && $(VALGRIND) ./a.out && rm -f a.out
 
-$(V42MANDATORY): v42%: mandatory_start
+$(V42MANDATORY): v42%:
 	@gcc -D BUFFER_SIZE=42 $(CFLAGS) -c $(MANDATORY_FILES)
 	@clang++ -D BUFFER_SIZE=42 $(CPPFLAGS) $(UTILS) $(TESTS_PATH)$*.cpp $(MANDATORY_OBJS) && $(VALGRIND) ./a.out && rm -f a.out
 
-$(V10MMANDATORY): v10M%: mandatory_start
+$(V10MMANDATORY): v10M%:
 	@gcc -D BUFFER_SIZE=10000000 $(CFLAGS) -c $(MANDATORY_FILES)
 	@clang++ -D BUFFER_SIZE=10000000 $(CPPFLAGS) $(UTILS) $(TESTS_PATH)$*.cpp $(MANDATORY_OBJS) && $(VALGRIND) ./a.out && rm -f a.out
 
-$(VMANDATORY): v%: mandatory_start
 
-$(BONUS): %: bonus_start
+$(1BONUS): 1%:
+	@gcc -D BUFFER_SIZE=1 $(CFLAGS) -c $(BONUS_FILES)
+	@clang++ -D BUFFER_SIZE=1 $(CPPFLAGS) $(UTILS) $(TESTS_PATH)$*.cpp $(BONUS_OBJS) && ./a.out && rm -f a.out
 
-$(VBONUS): v%: bonus_start
+$(42BONUS): 42%:
+	@gcc -D BUFFER_SIZE=42 $(CFLAGS) -c $(BONUS_FILES)
+	@clang++ -D BUFFER_SIZE=42 $(CPPFLAGS) $(UTILS) $(TESTS_PATH)$*.cpp $(BONUS_OBJS) && ./a.out && rm -f a.out
 
-$(VSOPEN): vs%: v%
-	@code $(TESTS_PATH)$*.cpp
+$(10MBONUS): 10M%:
+	@gcc -D BUFFER_SIZE=10000000 $(CFLAGS) -c $(BONUS_FILES)
+	@clang++ -D BUFFER_SIZE=10000000 $(CPPFLAGS) $(UTILS) $(TESTS_PATH)$*.cpp $(BONUS_OBJS) && ./a.out && rm -f a.out
+
+$(V1BONUS): v1%:
+	@gcc -D BUFFER_SIZE=1 $(CFLAGS) -c $(BONUS_FILES)
+	@clang++ -D BUFFER_SIZE=1 $(CPPFLAGS) $(UTILS) $(TESTS_PATH)$*.cpp $(BONUS_OBJS) && $(VALGRIND) ./a.out && rm -f a.out
+
+$(V42BONUS): v42%:
+	@gcc -D BUFFER_SIZE=42 $(CFLAGS) -c $(BONUS_FILES)
+	@clang++ -D BUFFER_SIZE=42 $(CPPFLAGS) $(UTILS) $(TESTS_PATH)$*.cpp $(BONUS_OBJS) && $(VALGRIND) ./a.out && rm -f a.out
+
+$(V10MBONUS): v10M%:
+	@gcc -D BUFFER_SIZE=10000000 $(CFLAGS) -c $(BONUS_FILES)
+	@clang++ -D BUFFER_SIZE=10000000 $(CPPFLAGS) $(UTILS) $(TESTS_PATH)$*.cpp $(BONUS_OBJS) && $(VALGRIND) ./a.out && rm -f a.out
 
 mandatory_start:
 	@tput setaf 4 && echo [Mandatory]
@@ -60,11 +88,11 @@ mandatory_start:
 bonus_start:
 	@tput setaf 5 && echo [Bonus]
 
-m: $(1MANDATORY) $(42MANDATORY) $(10MMANDATORY) clean
-b: $(BONUS) clean
+m: mandatory_start $(1MANDATORY) $(42MANDATORY) $(10MMANDATORY) clean
+b: bonus_start $(1BONUS) $(42BONUS) $(10MBONUS) clean
 a: m b
-vm: $(V1MANDATORY) $(V42MANDATORY) $(V10MMANDATORY) clean
-vb: $(VBONUS) clean
+vm: mandatory_start $(V1MANDATORY) $(V42MANDATORY) $(V10MMANDATORY) clean
+vb: bonus_start $(V1BONUS) $(V42BONUS) $(V10MBONUS) clean
 va: vm vb
 
 clean:
