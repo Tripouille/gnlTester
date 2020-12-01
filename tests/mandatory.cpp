@@ -25,7 +25,7 @@ int iTest = 1;
 int main(void)
 {
 	signal(SIGSEGV, sigsegv);
-	cout << FG_LGRAY << "Files\t[BUFFER_SIZE = " << BUFFER_SIZE << "]: ";
+	cout << FG_LGRAY << "[BUFFER_SIZE = " << BUFFER_SIZE << "]: ";
 	
 	char * line = (char *)42; int r;
 	r = get_next_line(101, &line);
@@ -102,6 +102,5 @@ int main(void)
 		++iTest;
 	readAll(fd);
 	cout << ENDL;
-	//r = get_next_line(0, &line); free(line); readAll(fd);
 	return (0);
 }
