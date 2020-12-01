@@ -28,19 +28,19 @@ $(1MANDATORY_OBJS): 1%.o: %.c $(MANDATORY_HEADER)
 	@gcc -D BUFFER_SIZE=1 $(CFLAGS) -c $*.c -o $*.o
 
 $(1MANDATORY): 1%: mandatory_start $(1MANDATORY_OBJS)
-	clang++ -D BUFFER_SIZE=1 $(CPPFLAGS) $(UTILS) $(TESTS_PATH)$*.cpp $(MANDATORY_OBJS) && valgrind -q ./a.out && rm -f a.out
+	clang++ -D BUFFER_SIZE=1 $(CPPFLAGS) $(UTILS) $(TESTS_PATH)$*.cpp $(MANDATORY_OBJS) && valgrind -q --leak-check=full --show-reachable=yes ./a.out && rm -f a.out
 
 $(42MANDATORY_OBJS): 42%.o: %.c $(MANDATORY_HEADER)
 	@gcc -D BUFFER_SIZE=42 $(CFLAGS) -c $*.c -o $*.o
 
 $(42MANDATORY): 42%: mandatory_start $(42MANDATORY_OBJS)
-	@clang++ -D BUFFER_SIZE=42 $(CPPFLAGS) $(UTILS) $(TESTS_PATH)$*.cpp $(MANDATORY_OBJS) && valgrind -q ./a.out && rm -f a.out
+	@clang++ -D BUFFER_SIZE=42 $(CPPFLAGS) $(UTILS) $(TESTS_PATH)$*.cpp $(MANDATORY_OBJS) && valgrind -q --leak-check=full --show-reachable=yes ./a.out && rm -f a.out
 
 $(10000000MANDATORY_OBJS): 10000000%.o: %.c $(MANDATORY_HEADER)
 	@gcc -D BUFFER_SIZE=10000000 $(CFLAGS) -c $*.c -o $*.o
 
 $(10000000MANDATORY): 10000000%: mandatory_start $(10000000MANDATORY_OBJS)
-	@clang++ -D BUFFER_SIZE=10000000 $(CPPFLAGS) $(UTILS) $(TESTS_PATH)$*.cpp $(MANDATORY_OBJS) && valgrind -q ./a.out && rm -f a.out
+	@clang++ -D BUFFER_SIZE=10000000 $(CPPFLAGS) $(UTILS) $(TESTS_PATH)$*.cpp $(MANDATORY_OBJS) && valgrind -q --leak-check=full --show-reachable=yes ./a.out && rm -f a.out
 
 $(VMANDATORY): v%: mandatory_start
 
