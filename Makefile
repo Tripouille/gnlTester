@@ -36,15 +36,15 @@ VALGRIND				= valgrind -q --leak-check=full --show-reachable=yes
 
 $(1MANDATORY): 1%:
 	@gcc -D BUFFER_SIZE=1 $(CFLAGS) -c $(MANDATORY_FILES)
-	@clang++ -D BUFFER_SIZE=1 $(CPPFLAGS) $(UTILS) $(TESTS_PATH)$*.cpp $(MANDATORY_OBJS) && ./a.out && rm -f a.out
+	@clang++ -D BUFFER_SIZE=1 $(CPPFLAGS) -fsanitize=address $(UTILS) $(TESTS_PATH)$*.cpp $(MANDATORY_OBJS) && ./a.out && rm -f a.out
 
 $(42MANDATORY): 42%:
 	@gcc -D BUFFER_SIZE=42 $(CFLAGS) -c $(MANDATORY_FILES)
-	@clang++ -D BUFFER_SIZE=42 $(CPPFLAGS) $(UTILS) $(TESTS_PATH)$*.cpp $(MANDATORY_OBJS) && ./a.out && rm -f a.out
+	@clang++ -D BUFFER_SIZE=42 $(CPPFLAGS) -fsanitize=address $(UTILS) $(TESTS_PATH)$*.cpp $(MANDATORY_OBJS) && ./a.out && rm -f a.out
 
 $(10MMANDATORY): 10M%:
 	@gcc -D BUFFER_SIZE=10000000 $(CFLAGS) -c $(MANDATORY_FILES)
-	@clang++ -D BUFFER_SIZE=10000000 $(CPPFLAGS) $(UTILS) $(TESTS_PATH)$*.cpp $(MANDATORY_OBJS) && ./a.out && rm -f a.out
+	@clang++ -D BUFFER_SIZE=10000000 $(CPPFLAGS) -fsanitize=address $(UTILS) $(TESTS_PATH)$*.cpp $(MANDATORY_OBJS) && ./a.out && rm -f a.out
 
 $(V1MANDATORY): v1%:
 	@gcc -D BUFFER_SIZE=1 $(CFLAGS) -c $(MANDATORY_FILES)
@@ -61,15 +61,15 @@ $(V10MMANDATORY): v10M%:
 
 $(1BONUS): 1%:
 	@gcc -D BUFFER_SIZE=1 $(CFLAGS) -c $(BONUS_FILES)
-	@clang++ -D BUFFER_SIZE=1 $(CPPFLAGS) $(UTILS) $(TESTS_PATH)$*.cpp $(BONUS_OBJS) && ./a.out && rm -f a.out
+	@clang++ -D BUFFER_SIZE=1 $(CPPFLAGS) -fsanitize=address $(UTILS) $(TESTS_PATH)$*.cpp $(BONUS_OBJS) && ./a.out && rm -f a.out
 
 $(42BONUS): 42%:
 	@gcc -D BUFFER_SIZE=42 $(CFLAGS) -c $(BONUS_FILES)
-	@clang++ -D BUFFER_SIZE=42 $(CPPFLAGS) $(UTILS) $(TESTS_PATH)$*.cpp $(BONUS_OBJS) && ./a.out && rm -f a.out
+	@clang++ -D BUFFER_SIZE=42 $(CPPFLAGS) -fsanitize=address $(UTILS) $(TESTS_PATH)$*.cpp $(BONUS_OBJS) && ./a.out && rm -f a.out
 
 $(10MBONUS): 10M%:
 	@gcc -D BUFFER_SIZE=10000000 $(CFLAGS) -c $(BONUS_FILES)
-	@clang++ -D BUFFER_SIZE=10000000 $(CPPFLAGS) $(UTILS) $(TESTS_PATH)$*.cpp $(BONUS_OBJS) && ./a.out && rm -f a.out
+	@clang++ -D BUFFER_SIZE=10000000 $(CPPFLAGS) -fsanitize=address $(UTILS) $(TESTS_PATH)$*.cpp $(BONUS_OBJS) && ./a.out && rm -f a.out
 
 $(V1BONUS): v1%:
 	@gcc -D BUFFER_SIZE=1 $(CFLAGS) -c $(BONUS_FILES)
