@@ -101,6 +101,35 @@ int main(void)
 	else
 		++iTest;
 	readAll(fd);
+
+	fd = open("files/multiple_nlx5", O_RDWR);
+	r = get_next_line(fd, &line); //x1
+	/* 32 */ check(r == 1);
+	/* 33 */ check(!strcmp(line, ""));
+	/* 34 */ mcheck(line, 1); free(line); line = (char *)42;
+	r = get_next_line(fd, &line); //x2
+	/* 35 */ check(r == 1);
+	/* 36 */ check(!strcmp(line, ""));
+	/* 37 */ mcheck(line, 1); free(line); line = (char *)42;
+	r = get_next_line(fd, &line); //x3
+	/* 38 */ check(r == 1);
+	/* 39 */ check(!strcmp(line, ""));
+	/* 40 */ mcheck(line, 1); free(line); line = (char *)42;
+	r = get_next_line(fd, &line); //x4
+	/* 41 */ check(r == 1);
+	/* 42 */ check(!strcmp(line, ""));
+	/* 43 */ mcheck(line, 1); free(line); line = (char *)42;
+	r = get_next_line(fd, &line); //x5
+	/* 44 */ check(r == 1);
+	/* 46 */ check(!strcmp(line, ""));
+	/* 47 */ mcheck(line, 1); free(line); line = (char *)42;
+	r = get_next_line(fd, &line);
+	/* 48 */ check(r == 0);
+	/* 49 */ check(!strcmp(line, ""));
+	/* 50 */ mcheck(line, 1); free(line); line = (char *)42;
+	readAll(fd);
+
+
 	cout << ENDL;
 	return (0);
 }
