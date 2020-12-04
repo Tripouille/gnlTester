@@ -91,7 +91,7 @@ bonus_start: update
 	@tput setaf 5 && /bin/echo [Bonus]
 
 update:
-	#@git pull
+	@git pull
 
 m: mandatory_start $(1MANDATORY) $(42MANDATORY) $(10MMANDATORY) cleanMandatory
 b: bonus_start $(1BONUS) $(42BONUS) $(10MBONUS) cleanBonus
