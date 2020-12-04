@@ -121,25 +121,63 @@ int main(void)
 	/* 43 */ mcheck(line, strlen(line) + 1); free(line); line = (char *)42;
 	r = get_next_line(fd, &line); //x5
 	/* 44 */ check(r == 1);
-	/* 46 */ check(!strcmp(line, ""));
-	/* 47 */ mcheck(line, strlen(line) + 1); free(line); line = (char *)42;
+	/* 45 */ check(!strcmp(line, ""));
+	/* 46 */ mcheck(line, strlen(line) + 1); free(line); line = (char *)42;
 	r = get_next_line(fd, &line);
-	/* 48 */ check(r == 0);
-	/* 49 */ check(!strcmp(line, ""));
-	/* 50 */ mcheck(line, strlen(line) + 1); free(line); line = (char *)42;
+	/* 47 */ check(r == 0);
+	/* 48 */ check(!strcmp(line, ""));
+	/* 49 */ mcheck(line, strlen(line) + 1); free(line); line = (char *)42;
 	readAll(fd);
 
 	fd = open("files/multiple_line_no_nl", O_RDWR);
 	r = get_next_line(fd, &line); //x1
-	/* 51 */ check(r == 1);
-	/* 52 */ check(!strcmp(line, "01234567890123456789012345678901234567890"));
-	/* 53 */ mcheck(line, strlen(line) + 1); free(line); line = (char *)42;
+	/* 50 */ check(r == 1);
+	/* 51 */ check(!strcmp(line, "01234567890123456789012345678901234567890"));
+	/* 52 */ mcheck(line, strlen(line) + 1); free(line); line = (char *)42;
+	r = get_next_line(fd, &line); //x2
+	/* 53 */ check(r == 1);
+	/* 54 */ check(!strcmp(line, "987654321098765432109876543210987654321098"));
+	/* 55 */ mcheck(line, strlen(line) + 1); free(line); line = (char *)42;
+	r = get_next_line(fd, &line); //x3
+	/* 56 */ check(r == 1);
+	/* 57 */ check(!strcmp(line, "0123456789012345678901234567890123456789012"));
+	/* 58 */ mcheck(line, strlen(line) + 1); free(line); line = (char *)42;
+	r = get_next_line(fd, &line); //x4
+	/* 59 */ check(r == 1);
+	/* 60 */ check(!strcmp(line, "987654321098765432109876543210987654321098"));
+	/* 61 */ mcheck(line, strlen(line) + 1); free(line); line = (char *)42;
+	r = get_next_line(fd, &line); //x5
+	/* 62 */ check(r == 0);
+	/* 63 */ check(!strcmp(line, "01234567890123456789012345678901234567890"));
+	/* 64 */ mcheck(line, strlen(line) + 1); free(line); line = (char *)42;
+	readAll(fd);
 
+	fd = open("files/multiple_line_with_nl", O_RDWR);
 	r = get_next_line(fd, &line); //x1
-	/* 54 */ check(r == 1);
-	/* 55 */ check(!strcmp(line, "012345678901234567890123456789012345678901"));
-	/* 56 */ mcheck(line, strlen(line) + 1); free(line); line = (char *)42;
-
+	/* 50 */ check(r == 1);
+	/* 51 */ check(!strcmp(line, "9876543210987654321098765432109876543210"));
+	/* 52 */ mcheck(line, strlen(line) + 1); free(line); line = (char *)42;
+	r = get_next_line(fd, &line); //x2
+	/* 53 */ check(r == 1);
+	/* 54 */ check(!strcmp(line, "01234567890123456789012345678901234567890"));
+	/* 55 */ mcheck(line, strlen(line) + 1); free(line); line = (char *)42;
+	r = get_next_line(fd, &line); //x3
+	/* 56 */ check(r == 1);
+	/* 57 */ check(!strcmp(line, "987654321098765432109876543210987654321098"));
+	/* 58 */ mcheck(line, strlen(line) + 1); free(line); line = (char *)42;
+	r = get_next_line(fd, &line); //x4
+	/* 59 */ check(r == 1);
+	/* 60 */ check(!strcmp(line, "01234567890123456789012345678901234567890"));
+	/* 61 */ mcheck(line, strlen(line) + 1); free(line); line = (char *)42;
+	r = get_next_line(fd, &line); //x5
+	/* 62 */ check(r == 1);
+	/* 63 */ check(!strcmp(line, "9876543210987654321098765432109876543210"));
+	/* 64 */ mcheck(line, strlen(line) + 1); free(line); line = (char *)42;
+	r = get_next_line(fd, &line); //x5
+	/* 62 */ check(r == 0);
+	/* 63 */ check(!strcmp(line, ""));
+	/* 64 */ mcheck(line, strlen(line) + 1); free(line); line = (char *)42;
+	readAll(fd);
 
 
 	cout << ENDL;
