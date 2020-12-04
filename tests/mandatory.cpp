@@ -265,6 +265,10 @@ int main(void)
 	/* 142 */ mcheck(line, strlen(line) + 1); free(line); line = (char *)42;
 	readAll(fd);
 
+	r = get_next_line(-1, &line); //Astridounette test <3
+	/* 143 */ check(r == -1);
+	/* 144 */ check(line == (char *)42); line = (char *)42;
+
 	cout << ENDL;
 	return (0);
 }
