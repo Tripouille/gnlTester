@@ -18,8 +18,7 @@ make va = launch mandatory tests + bonus tests with valgrind
 
 # Outputs
 
-![alt text](https://i.imgur.com/MTymT3Y.png)
-![alt text](https://i.imgur.com/ZyNYnC9.png)
+![alt text](https://i.imgur.com/TghMNXL.png)
 
 MOK / MKO = test about your malloc size (this shouldn't be tested by moulinette)  
 
