@@ -154,31 +154,116 @@ int main(void)
 
 	fd = open("files/multiple_line_with_nl", O_RDWR);
 	r = get_next_line(fd, &line); //x1
-	/* 50 */ check(r == 1);
-	/* 51 */ check(!strcmp(line, "9876543210987654321098765432109876543210"));
-	/* 52 */ mcheck(line, strlen(line) + 1); free(line); line = (char *)42;
+	/* 65 */ check(r == 1);
+	/* 66 */ check(!strcmp(line, "9876543210987654321098765432109876543210"));
+	/* 67 */ mcheck(line, strlen(line) + 1); free(line); line = (char *)42;
 	r = get_next_line(fd, &line); //x2
-	/* 53 */ check(r == 1);
-	/* 54 */ check(!strcmp(line, "01234567890123456789012345678901234567890"));
-	/* 55 */ mcheck(line, strlen(line) + 1); free(line); line = (char *)42;
+	/* 68 */ check(r == 1);
+	/* 69 */ check(!strcmp(line, "01234567890123456789012345678901234567890"));
+	/* 70 */ mcheck(line, strlen(line) + 1); free(line); line = (char *)42;
 	r = get_next_line(fd, &line); //x3
-	/* 56 */ check(r == 1);
-	/* 57 */ check(!strcmp(line, "987654321098765432109876543210987654321098"));
-	/* 58 */ mcheck(line, strlen(line) + 1); free(line); line = (char *)42;
+	/* 71 */ check(r == 1);
+	/* 72 */ check(!strcmp(line, "987654321098765432109876543210987654321098"));
+	/* 73 */ mcheck(line, strlen(line) + 1); free(line); line = (char *)42;
 	r = get_next_line(fd, &line); //x4
-	/* 59 */ check(r == 1);
-	/* 60 */ check(!strcmp(line, "01234567890123456789012345678901234567890"));
-	/* 61 */ mcheck(line, strlen(line) + 1); free(line); line = (char *)42;
+	/* 74 */ check(r == 1);
+	/* 75 */ check(!strcmp(line, "01234567890123456789012345678901234567890"));
+	/* 76 */ mcheck(line, strlen(line) + 1); free(line); line = (char *)42;
 	r = get_next_line(fd, &line); //x5
-	/* 62 */ check(r == 1);
-	/* 63 */ check(!strcmp(line, "9876543210987654321098765432109876543210"));
-	/* 64 */ mcheck(line, strlen(line) + 1); free(line); line = (char *)42;
-	r = get_next_line(fd, &line); //x5
-	/* 62 */ check(r == 0);
-	/* 63 */ check(!strcmp(line, ""));
-	/* 64 */ mcheck(line, strlen(line) + 1); free(line); line = (char *)42;
+	/* 77 */ check(r == 1);
+	/* 78 */ check(!strcmp(line, "9876543210987654321098765432109876543210"));
+	/* 79 */ mcheck(line, strlen(line) + 1); free(line); line = (char *)42;
+	r = get_next_line(fd, &line); //x6
+	/* 80 */ check(r == 0);
+	/* 81 */ check(!strcmp(line, ""));
+	/* 82 */ mcheck(line, strlen(line) + 1); free(line); line = (char *)42;
 	readAll(fd);
 
+	fd = open("files/alternate_line_nl_no_nl", O_RDWR);
+	r = get_next_line(fd, &line); //x1
+	/* 83 */ check(r == 1);
+	/* 84 */ check(!strcmp(line, "98765432109876543210987654321098765432109"));
+	/* 85 */ mcheck(line, strlen(line) + 1); free(line); line = (char *)42;
+	r = get_next_line(fd, &line); //x2
+	/* 86 */ check(r == 1);
+	/* 87 */ check(!strcmp(line, ""));
+	/* 88 */ mcheck(line, strlen(line) + 1); free(line); line = (char *)42;
+	r = get_next_line(fd, &line); //x3
+	/* 89 */ check(r == 1);
+	/* 90 */ check(!strcmp(line, "012345678901234567890123456789012345678901"));
+	/* 91 */ mcheck(line, strlen(line) + 1); free(line); line = (char *)42;
+	r = get_next_line(fd, &line); //x4
+	/* 92 */ check(r == 1);
+	/* 93 */ check(!strcmp(line, ""));
+	/* 94 */ mcheck(line, strlen(line) + 1); free(line); line = (char *)42;
+	r = get_next_line(fd, &line); //x5
+	/* 95 */ check(r == 1);
+	/* 96 */ check(!strcmp(line, "9876543210987654321098765432109876543210987"));
+	/* 97 */ mcheck(line, strlen(line) + 1); free(line); line = (char *)42;
+	r = get_next_line(fd, &line); //x6
+	/* 98 */ check(r == 1);
+	/* 99 */ check(!strcmp(line, ""));
+	/* 100 */ mcheck(line, strlen(line) + 1); free(line); line = (char *)42;
+	r = get_next_line(fd, &line); //x7
+	/* 101 */ check(r == 1);
+	/* 102 */ check(!strcmp(line, "012345678901234567890123456789012345678901"));
+	/* 103 */ mcheck(line, strlen(line) + 1); free(line); line = (char *)42;
+	r = get_next_line(fd, &line); //x8
+	/* 104 */ check(r == 1);
+	/* 105 */ check(!strcmp(line, ""));
+	/* 106 */ mcheck(line, strlen(line) + 1); free(line); line = (char *)42;
+	r = get_next_line(fd, &line); //x9
+	/* 107 */ check(r == 0);
+	/* 108 */ check(!strcmp(line, "98765432109876543210987654321098765432109"));
+	/* 109 */ mcheck(line, strlen(line) + 1); free(line); line = (char *)42;
+	r = get_next_line(fd, &line); //x10
+	/* 110 */ check(r == 0);
+	/* 111 */ check(!strcmp(line, ""));
+	/* 112 */ mcheck(line, strlen(line) + 1); free(line); line = (char *)42;
+	readAll(fd);
+
+	fd = open("files/alternate_line_nl_with_nl", O_RDWR);
+	r = get_next_line(fd, &line); //x1
+	/* 113 */ check(r == 1);
+	/* 114 */ check(!strcmp(line, "01234567890123456789012345678901234567890"));
+	/* 115 */ mcheck(line, strlen(line) + 1); free(line); line = (char *)42;
+	r = get_next_line(fd, &line); //x2
+	/* 116 */ check(r == 1);
+	/* 117 */ check(!strcmp(line, ""));
+	/* 118 */ mcheck(line, strlen(line) + 1); free(line); line = (char *)42;
+	r = get_next_line(fd, &line); //x3
+	/* 119 */ check(r == 1);
+	/* 120 */ check(!strcmp(line, "987654321098765432109876543210987654321090"));
+	/* 121 */ mcheck(line, strlen(line) + 1); free(line); line = (char *)42;
+	r = get_next_line(fd, &line); //x4
+	/* 122 */ check(r == 1);
+	/* 123 */ check(!strcmp(line, ""));
+	/* 124 */ mcheck(line, strlen(line) + 1); free(line); line = (char *)42;
+	r = get_next_line(fd, &line); //x5
+	/* 125 */ check(r == 1);
+	/* 126 */ check(!strcmp(line, "0123456789012345678901234567890123456789012"));
+	/* 127 */ mcheck(line, strlen(line) + 1); free(line); line = (char *)42;
+	r = get_next_line(fd, &line); //x6
+	/* 128 */ check(r == 1);
+	/* 129 */ check(!strcmp(line, ""));
+	/* 130 */ mcheck(line, strlen(line) + 1); free(line); line = (char *)42;
+	r = get_next_line(fd, &line); //x7
+	/* 131 */ check(r == 1);
+	/* 132 */ check(!strcmp(line, "987654321098765432109876543210987654321090"));
+	/* 133 */ mcheck(line, strlen(line) + 1); free(line); line = (char *)42;
+	r = get_next_line(fd, &line); //x8
+	/* 134 */ check(r == 1);
+	/* 135 */ check(!strcmp(line, ""));
+	/* 136 */ mcheck(line, strlen(line) + 1); free(line); line = (char *)42;
+	r = get_next_line(fd, &line); //x9
+	/* 137 */ check(r == 1);
+	/* 138 */ check(!strcmp(line, "01234567890123456789012345678901234567890"));
+	/* 139 */ mcheck(line, strlen(line) + 1); free(line); line = (char *)42;
+	r = get_next_line(fd, &line); //x10
+	/* 140 */ check(r == 0);
+	/* 141 */ check(!strcmp(line, ""));
+	/* 142 */ mcheck(line, strlen(line) + 1); free(line); line = (char *)42;
+	readAll(fd);
 
 	cout << ENDL;
 	return (0);
