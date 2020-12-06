@@ -28,10 +28,9 @@ int main(void)
 	cout << FG_LGRAY << "[BUFFER_SIZE = " << BUFFER_SIZE << "]: ";
 	
 	char * line = (char *)42; int r;
-	r = get_next_line(101, &line);
+	r = get_next_line(1000, &line);
 	/* 1 */ check(r == -1);
 	/* 2 */ check(line == (char *)42); line = (char *)42;
-
 	int fd = open("files/empty", O_RDWR);
 	r = get_next_line(fd, &line);
 	/* 3 */ check(r == 0);
