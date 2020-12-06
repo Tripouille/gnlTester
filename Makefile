@@ -45,64 +45,64 @@ VALGRIND				= valgrind -q --leak-check=full --show-reachable=yes
 
 $(1MANDATORY): 1%:
 	@gcc -D BUFFER_SIZE=1 $(CFLAGS) -c $(MANDATORY_FILES)
-	@clang++ -D BUFFER_SIZE=1 $(CPPFLAGS) -fsanitize=address $(UTILS) $(TESTS_PATH)$*.cpp $(MANDATORY_OBJS) && ./a.out && rm -f a.out
+	@clang++ -D BUFFER_SIZE=1 $(CPPFLAGS) -fsanitize=address $(UTILS) $(TESTS_PATH)$*.cpp $(MANDATORY_OBJS) && ./a.out < files/alternate_line_nl_with_nl && rm -f a.out
 $(42MANDATORY): 42%:
 	@gcc -D BUFFER_SIZE=42 $(CFLAGS) -c $(MANDATORY_FILES)
-	@clang++ -D BUFFER_SIZE=42 $(CPPFLAGS) -fsanitize=address $(UTILS) $(TESTS_PATH)$*.cpp $(MANDATORY_OBJS) && ./a.out && rm -f a.out
+	@clang++ -D BUFFER_SIZE=42 $(CPPFLAGS) -fsanitize=address $(UTILS) $(TESTS_PATH)$*.cpp $(MANDATORY_OBJS) && ./a.out < files/alternate_line_nl_with_nl && rm -f a.out
 $(10MMANDATORY): 10M%:
 	@gcc -D BUFFER_SIZE=10000000 $(CFLAGS) -c $(MANDATORY_FILES)
-	@clang++ -D BUFFER_SIZE=10000000 $(CPPFLAGS) -fsanitize=address $(UTILS) $(TESTS_PATH)$*.cpp $(MANDATORY_OBJS) && ./a.out && rm -f a.out
+	@clang++ -D BUFFER_SIZE=10000000 $(CPPFLAGS) -fsanitize=address $(UTILS) $(TESTS_PATH)$*.cpp $(MANDATORY_OBJS) && ./a.out < files/alternate_line_nl_with_nl && rm -f a.out
 
 $(V1MANDATORY): v1%:
 	@gcc -D BUFFER_SIZE=1 $(CFLAGS) -c $(MANDATORY_FILES)
-	@clang++ -D BUFFER_SIZE=1 $(CPPFLAGS) $(UTILS) $(TESTS_PATH)$*.cpp $(MANDATORY_OBJS) && $(VALGRIND) ./a.out && rm -f a.out
+	@clang++ -D BUFFER_SIZE=1 $(CPPFLAGS) $(UTILS) $(TESTS_PATH)$*.cpp $(MANDATORY_OBJS) && $(VALGRIND) ./a.out < files/alternate_line_nl_with_nl && rm -f a.out
 $(V42MANDATORY): v42%:
 	@gcc -D BUFFER_SIZE=42 $(CFLAGS) -c $(MANDATORY_FILES)
-	@clang++ -D BUFFER_SIZE=42 $(CPPFLAGS) $(UTILS) $(TESTS_PATH)$*.cpp $(MANDATORY_OBJS) && $(VALGRIND) ./a.out && rm -f a.out
+	@clang++ -D BUFFER_SIZE=42 $(CPPFLAGS) $(UTILS) $(TESTS_PATH)$*.cpp $(MANDATORY_OBJS) && $(VALGRIND) ./a.out < files/alternate_line_nl_with_nl && rm -f a.out
 $(V10MMANDATORY): v10M%:
 	@gcc -D BUFFER_SIZE=10000000 $(CFLAGS) -c $(MANDATORY_FILES)
-	@clang++ -D BUFFER_SIZE=10000000 $(CPPFLAGS) $(UTILS) $(TESTS_PATH)$*.cpp $(MANDATORY_OBJS) && $(VALGRIND) ./a.out && rm -f a.out
+	@clang++ -D BUFFER_SIZE=10000000 $(CPPFLAGS) $(UTILS) $(TESTS_PATH)$*.cpp $(MANDATORY_OBJS) && $(VALGRIND) ./a.out < files/alternate_line_nl_with_nl && rm -f a.out
 
 
 $(1MBONUS): m1%:
 	@gcc -D BUFFER_SIZE=1 $(CFLAGS) -c $(BONUS_FILES)
-	@clang++ -D BUFFER_SIZE=1 $(CPPFLAGS) -fsanitize=address $(UTILS) $(TESTS_PATH)$(MANDATORY).cpp $(BONUS_OBJS) && ./a.out && rm -f a.out
+	@clang++ -D BUFFER_SIZE=1 $(CPPFLAGS) -fsanitize=address $(UTILS) $(TESTS_PATH)$(MANDATORY).cpp $(BONUS_OBJS) && ./a.out < files/alternate_line_nl_with_nl && rm -f a.out
 $(42MBONUS): m42%:
 	@gcc -D BUFFER_SIZE=42 $(CFLAGS) -c $(BONUS_FILES)
-	@clang++ -D BUFFER_SIZE=42 $(CPPFLAGS) -fsanitize=address $(UTILS) $(TESTS_PATH)$(MANDATORY).cpp $(BONUS_OBJS) && ./a.out && rm -f a.out
+	@clang++ -D BUFFER_SIZE=42 $(CPPFLAGS) -fsanitize=address $(UTILS) $(TESTS_PATH)$(MANDATORY).cpp $(BONUS_OBJS) && ./a.out < files/alternate_line_nl_with_nl && rm -f a.out
 $(10MMBONUS): m10M%:
 	@gcc -D BUFFER_SIZE=10000000 $(CFLAGS) -c $(BONUS_FILES)
-	@clang++ -D BUFFER_SIZE=10000000 $(CPPFLAGS) -fsanitize=address $(UTILS) $(TESTS_PATH)$(MANDATORY).cpp $(BONUS_OBJS) && ./a.out && rm -f a.out
+	@clang++ -D BUFFER_SIZE=10000000 $(CPPFLAGS) -fsanitize=address $(UTILS) $(TESTS_PATH)$(MANDATORY).cpp $(BONUS_OBJS) && ./a.out < files/alternate_line_nl_with_nl && rm -f a.out
 
 $(1BONUS): 1%:
 	@gcc -D BUFFER_SIZE=1 $(CFLAGS) -c $(BONUS_FILES)
-	@clang++ -D BUFFER_SIZE=1 $(CPPFLAGS) -fsanitize=address $(UTILS) $(TESTS_PATH)$*.cpp $(BONUS_OBJS) && ./a.out && rm -f a.out
+	@clang++ -D BUFFER_SIZE=1 $(CPPFLAGS) -fsanitize=address $(UTILS) $(TESTS_PATH)$*.cpp $(BONUS_OBJS) && ./a.out < files/alternate_line_nl_with_nl && rm -f a.out
 $(42BONUS): 42%:
 	@gcc -D BUFFER_SIZE=42 $(CFLAGS) -c $(BONUS_FILES)
-	@clang++ -D BUFFER_SIZE=42 $(CPPFLAGS) -fsanitize=address $(UTILS) $(TESTS_PATH)$*.cpp $(BONUS_OBJS) && ./a.out && rm -f a.out
+	@clang++ -D BUFFER_SIZE=42 $(CPPFLAGS) -fsanitize=address $(UTILS) $(TESTS_PATH)$*.cpp $(BONUS_OBJS) && ./a.out < files/alternate_line_nl_with_nl && rm -f a.out
 $(10MBONUS): 10M%:
 	@gcc -D BUFFER_SIZE=10000000 $(CFLAGS) -c $(BONUS_FILES)
-	@clang++ -D BUFFER_SIZE=10000000 $(CPPFLAGS) -fsanitize=address $(UTILS) $(TESTS_PATH)$*.cpp $(BONUS_OBJS) && ./a.out && rm -f a.out
+	@clang++ -D BUFFER_SIZE=10000000 $(CPPFLAGS) -fsanitize=address $(UTILS) $(TESTS_PATH)$*.cpp $(BONUS_OBJS) && ./a.out < files/alternate_line_nl_with_nl && rm -f a.out
 
 $(V1MBONUS): vm1%:
 	@gcc -D BUFFER_SIZE=1 $(CFLAGS) -c $(BONUS_FILES)
-	@clang++ -D BUFFER_SIZE=1 $(CPPFLAGS) $(UTILS) $(TESTS_PATH)$(MANDATORY).cpp $(BONUS_OBJS) && $(VALGRIND) ./a.out && rm -f a.out
+	@clang++ -D BUFFER_SIZE=1 $(CPPFLAGS) $(UTILS) $(TESTS_PATH)$(MANDATORY).cpp $(BONUS_OBJS) && $(VALGRIND) ./a.out < files/alternate_line_nl_with_nl && rm -f a.out
 $(V42MBONUS): vm42%:
 	@gcc -D BUFFER_SIZE=42 $(CFLAGS) -c $(BONUS_FILES)
-	@clang++ -D BUFFER_SIZE=42 $(CPPFLAGS) $(UTILS) $(TESTS_PATH)$(MANDATORY).cpp $(BONUS_OBJS) && $(VALGRIND) ./a.out && rm -f a.out
+	@clang++ -D BUFFER_SIZE=42 $(CPPFLAGS) $(UTILS) $(TESTS_PATH)$(MANDATORY).cpp $(BONUS_OBJS) && $(VALGRIND) ./a.out < files/alternate_line_nl_with_nl && rm -f a.out
 $(V10MMBONUS): vm10M%:
 	@gcc -D BUFFER_SIZE=10000000 $(CFLAGS) -c $(BONUS_FILES)
-	@clang++ -D BUFFER_SIZE=10000000 $(CPPFLAGS) $(UTILS) $(TESTS_PATH)$(MANDATORY).cpp $(BONUS_OBJS) && $(VALGRIND) ./a.out && rm -f a.out
+	@clang++ -D BUFFER_SIZE=10000000 $(CPPFLAGS) $(UTILS) $(TESTS_PATH)$(MANDATORY).cpp $(BONUS_OBJS) && $(VALGRIND) ./a.out < files/alternate_line_nl_with_nl && rm -f a.out
 
 $(V1BONUS): v1%:
 	@gcc -D BUFFER_SIZE=1 $(CFLAGS) -c $(BONUS_FILES)
-	@clang++ -D BUFFER_SIZE=1 $(CPPFLAGS) $(UTILS) $(TESTS_PATH)$*.cpp $(BONUS_OBJS) && $(VALGRIND) ./a.out && rm -f a.out
+	@clang++ -D BUFFER_SIZE=1 $(CPPFLAGS) $(UTILS) $(TESTS_PATH)$*.cpp $(BONUS_OBJS) && $(VALGRIND) ./a.out < files/alternate_line_nl_with_nl && rm -f a.out
 $(V42BONUS): v42%:
 	@gcc -D BUFFER_SIZE=42 $(CFLAGS) -c $(BONUS_FILES)
-	@clang++ -D BUFFER_SIZE=42 $(CPPFLAGS) $(UTILS) $(TESTS_PATH)$*.cpp $(BONUS_OBJS) && $(VALGRIND) ./a.out && rm -f a.out
+	@clang++ -D BUFFER_SIZE=42 $(CPPFLAGS) $(UTILS) $(TESTS_PATH)$*.cpp $(BONUS_OBJS) && $(VALGRIND) ./a.out < files/alternate_line_nl_with_nl && rm -f a.out
 $(V10MBONUS): v10M%:
 	@gcc -D BUFFER_SIZE=10000000 $(CFLAGS) -c $(BONUS_FILES)
-	@clang++ -D BUFFER_SIZE=10000000 $(CPPFLAGS) $(UTILS) $(TESTS_PATH)$*.cpp $(BONUS_OBJS) && $(VALGRIND) ./a.out && rm -f a.out
+	@clang++ -D BUFFER_SIZE=10000000 $(CPPFLAGS) $(UTILS) $(TESTS_PATH)$*.cpp $(BONUS_OBJS) && $(VALGRIND) ./a.out < files/alternate_line_nl_with_nl && rm -f a.out
 
 mandatory_start: update
 	@tput setaf 4 && echo [Mandatory]

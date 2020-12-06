@@ -268,6 +268,49 @@ int main(void)
 	/* 143 */ check(r == -1);
 	/* 144 */ check(line == (char *)42); line = (char *)42;
 
+	//Stdin
+	r = get_next_line(0, &line); //x1
+	/* 145 */ check(r == 1);
+	/* 146 */ check(!strcmp(line, "01234567890123456789012345678901234567890"));
+	/* 147 */ mcheck(line, strlen(line) + 1); free(line); line = (char *)42;
+	r = get_next_line(0, &line); //x2
+	/* 148 */ check(r == 1);
+	/* 149 */ check(!strcmp(line, ""));
+	/* 150 */ mcheck(line, strlen(line) + 1); free(line); line = (char *)42;
+	r = get_next_line(0, &line); //x3
+	/* 151 */ check(r == 1);
+	/* 152 */ check(!strcmp(line, "987654321098765432109876543210987654321090"));
+	/* 153 */ mcheck(line, strlen(line) + 1); free(line); line = (char *)42;
+	r = get_next_line(0, &line); //x4
+	/* 154 */ check(r == 1);
+	/* 155 */ check(!strcmp(line, ""));
+	/* 156 */ mcheck(line, strlen(line) + 1); free(line); line = (char *)42;
+	r = get_next_line(0, &line); //x5
+	/* 157 */ check(r == 1);
+	/* 158 */ check(!strcmp(line, "0123456789012345678901234567890123456789012"));
+	/* 159 */ mcheck(line, strlen(line) + 1); free(line); line = (char *)42;
+	r = get_next_line(0, &line); //x6
+	/* 160 */ check(r == 1);
+	/* 161 */ check(!strcmp(line, ""));
+	/* 162 */ mcheck(line, strlen(line) + 1); free(line); line = (char *)42;
+	r = get_next_line(0, &line); //x7
+	/* 163 */ check(r == 1);
+	/* 164 */ check(!strcmp(line, "987654321098765432109876543210987654321090"));
+	/* 165 */ mcheck(line, strlen(line) + 1); free(line); line = (char *)42;
+	r = get_next_line(0, &line); //x8
+	/* 166 */ check(r == 1);
+	/* 167 */ check(!strcmp(line, ""));
+	/* 168 */ mcheck(line, strlen(line) + 1); free(line); line = (char *)42;
+	r = get_next_line(0, &line); //x9
+	/* 169 */ check(r == 1);
+	/* 170 */ check(!strcmp(line, "01234567890123456789012345678901234567890"));
+	/* 171 */ mcheck(line, strlen(line) + 1); free(line); line = (char *)42;
+	r = get_next_line(0, &line); //x10
+	/* 172 */ check(r == 0);
+	/* 173 */ check(!strcmp(line, ""));
+	/* 174 */ mcheck(line, strlen(line) + 1); free(line); line = (char *)42;
+	readAll(0);
+
 	cout << ENDL;
 	return (0);
 }
