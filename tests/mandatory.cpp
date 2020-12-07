@@ -54,10 +54,14 @@ int main(void)
 
 	cout << FG_LGRAY << "files/42_with_nl: "; cout.flush();
 	fd = open("files/42_with_nl", O_RDWR);
-	TEST(/* 1 */ gnl(fd, 1, "01234567890123456789012345678901234567890"););
-	if (BUFFER_SIZE == 42)
-		 /* 2 */ {char c = 0; read(fd, &c, 1); ++iTest; check(c == '1'); --iTest;}
-	cout << ENDL; close(fd);
+	TEST(/* 1 */ gnl(fd, 1, "01234567890123456789012345678901234567890");
+	if (BUFFER_SIZE == 42) {
+		 /* 2 */ char c = 0; read(fd, &c, 1); check(c == '1'); ++iTest;
+	     /* 3 */ gnl(fd, 0, "");}
+	else {
+		 /* 2 */ gnl(fd, 1, "1");
+		 /* 3 */ gnl(fd, 0, "");})
+	iTest = 1; cout << ENDL; close(fd);
 
 	cout << FG_LGRAY << "files/43_no_nl: "; cout.flush();
 	fd = open("files/43_no_nl", O_RDWR);
