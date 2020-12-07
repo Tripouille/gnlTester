@@ -1,4 +1,4 @@
-TIMEOUT_US				= 150000
+TIMEOUT_US				= 100000
 
 .DEFAULT_GOAL			= va
 UTILS					= utils/sigsegv.cpp utils/color.cpp utils/check.cpp utils/gnl.cpp
