@@ -124,7 +124,7 @@ vm: mandatory_start $(V1MANDATORY) $(V42MANDATORY) $(V10MMANDATORY) cleanMandato
 vb: bonus_start $(V1MBONUS) $(V42MBONUS) $(V10MMBONUS) $(V1BONUS) $(V42BONUS) $(V10MBONUS) cleanBonus
 va: vm vb
 
-cleanMandatory cleanBonus:
-	@rm -rf $(MANDATORY_OBJS) $(BONUS_OBJS)
+clean cleanMandatory cleanBonus:
+	@rm -rf $(MANDATORY_OBJS) $(BONUS_OBJS) a.out
 
-.PHONY:	mandatory_start m vm bonus_start b vb a va cleanMandatory cleanBonus
+.PHONY:	mandatory_start m vm bonus_start b vb a va clean cleanMandatory cleanBonus
