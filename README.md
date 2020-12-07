@@ -12,6 +12,8 @@ make vm = launch mandatory tests with valgrind
 make vb = launch bonus tests with valgrind  
 make va = launch mandatory tests + bonus tests with valgrind  
 
+You can change the timeout value in Makefile    
+![alt text](https://i.imgur.com/jUimpaC.png)  
 
 *FOR RIGOROUS TEST YOU SHOULD RUN ALL TESTS WITH VALGRIND*
 
