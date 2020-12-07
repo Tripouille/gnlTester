@@ -42,13 +42,11 @@ int main(void)
 	cout << FG_LGRAY << "files/41_with_nl: "; cout.flush();
 	fd = open("files/41_with_nl", O_RDWR);
 	TEST(/* 1 */ gnl(fd, 1, "0123456789012345678901234567890123456789");
-		 /* 2 */ gnl(fd, 0, "0"); 
-		 /* 3 */ gnl(fd, 0, "");) cout << ENDL; close(fd);
+		 /* 2 */ gnl(fd, 0, "0");) cout << ENDL; close(fd);
 
 	cout << FG_LGRAY << "files/42_no_nl: "; cout.flush();
 	fd = open("files/42_no_nl", O_RDWR);
-	TEST(/* 1 */ gnl(fd, 0, "012345678901234567890123456789012345678901");
-		 /* 2 */ gnl(fd, 0, "");) cout << ENDL; close(fd);
+	TEST(/* 1 */ gnl(fd, 0, "012345678901234567890123456789012345678901");) cout << ENDL; close(fd);
 
 	cout << FG_LGRAY << "files/42_with_nl: "; cout.flush();
 	fd = open("files/42_with_nl", O_RDWR);
@@ -63,15 +61,13 @@ int main(void)
 
 	cout << FG_LGRAY << "files/43_no_nl: "; cout.flush();
 	fd = open("files/43_no_nl", O_RDWR);
-	TEST(/* 1 */ gnl(fd, 0, "0123456789012345678901234567890123456789012");
-		 /* 2 */ gnl(fd, 0, "");) cout << ENDL; close(fd);
+	TEST(/* 1 */ gnl(fd, 0, "0123456789012345678901234567890123456789012");) cout << ENDL; close(fd);
 
 	cout << FG_LGRAY << "files/43_with_nl: "; cout.flush();
 	fd = open("files/43_with_nl", O_RDWR);
 	TEST(/* 1 */ gnl(fd, 1, "012345678901234567890123456789012345678901");
 		 /* 2 */ gnl(fd, 1, "2");
-		 /* 3 */ gnl(fd, 0, "");
-		 /* 4 */ gnl(fd, 0, "");) cout << ENDL; close(fd);
+		 /* 3 */ gnl(fd, 0, "");) cout << ENDL; close(fd);
 
 	cout << FG_LGRAY << "files/multiple_nlx5: "; cout.flush();
 	fd = open("files/multiple_nlx5", O_RDWR);
@@ -88,8 +84,7 @@ int main(void)
 		 /* 2 */ gnl(fd, 1, "987654321098765432109876543210987654321098");
 		 /* 3 */ gnl(fd, 1, "0123456789012345678901234567890123456789012");
 		 /* 4 */ gnl(fd, 1, "987654321098765432109876543210987654321098");
-		 /* 5 */ gnl(fd, 0, "01234567890123456789012345678901234567890");
-		 /* 6 */ gnl(fd, 0, "");) cout << ENDL; close(fd);
+		 /* 5 */ gnl(fd, 0, "01234567890123456789012345678901234567890");) cout << ENDL; close(fd);
 
 	cout << FG_LGRAY << "files/multiple_line_with_nl: "; cout.flush();
 	fd = open("files/multiple_line_with_nl", O_RDWR);
