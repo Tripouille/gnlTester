@@ -14,13 +14,11 @@ extern "C"
 #include "sigsegv.hpp"
 #include "check.hpp"
 #include "gnl.hpp"
-//Don't do that at home
-#define TEST(x) {test = fork(); if (test == 0) {x exit(EXIT_SUCCESS);} else {usleep(TIMEOUT_US); if (waitpid(test, &status, WNOHANG) == 0) {kill(test, 9); cout << FG_RED << "TIMEOUT";}}}
 
 int iTest = 1;
 int main(void)
 {
-	signal(SIGSEGV, sigsegv); int fd; int test; int status;
+	signal(SIGSEGV, sigsegv); int fd;
 	cout << FG_LGRAY << "[BUFFER_SIZE = " << BUFFER_SIZE << "]: " << ENDL;
 	cout << FG_LGRAY << "Invalid fd: "; cout.flush();
 	TEST(/* 1 */ gnl(1000, -1, NULL);
@@ -114,7 +112,6 @@ int main(void)
 		 /* 1 */ gnl(fd, 1, "");
 		 /* 5 */ gnl(fd, 1, "98765432109876543210987654321098765432109");
 		 /* 6 */ gnl(fd, 0, "");) cout << ENDL; close(fd);
-
 
 	cout << FG_LGRAY << "files/alternate_line_nl_with_nl: "; cout.flush();
 	fd = open("files/alternate_line_nl_with_nl", O_RDWR);

@@ -5,28 +5,23 @@ extern "C"
 #undef new
 }
 
-#include "sigsegv.hpp"
-#include "check.hpp"
+#include <sys/wait.h>
 #include <string.h>
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <unistd.h>
-
-void readAll(int fd)
-{
-	char * s;
-	while (get_next_line(fd, &s) > 0)
-		free(s);
-	free(s);
-}
+#include "sigsegv.hpp"
+#include "check.hpp"
+#include "gnl.hpp"
 
 int iTest = 1;
 int main(void)
 {
 	signal(SIGSEGV, sigsegv);
-	cout << FG_LGRAY << "[BUFFER_SIZE = " << BUFFER_SIZE << "]: ";
+	cout << FG_LGRAY << "[BUFFER_SIZE = " << BUFFER_SIZE << "]: " << ENDL;
 	
+	cout << FG_LGRAY << "multiple fd: "; cout.flush();
 	char * line = (char *)42; int r;
 	r = get_next_line(1000, &line);
 	/* 1 */ check(r == -1);
