@@ -1,7 +1,6 @@
-# gnlTester
+# gnlTester (2019+)
 
-Clone this tester in your gnl repository.
-
+Clone this tester in your gnl repository. (works on linux and mac, NOW handle timeout on mandatory part)
 ![alt text](https://i.imgur.com/uupv1UH.png)
 
 # Commands
