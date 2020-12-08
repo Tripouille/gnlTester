@@ -1,6 +1,7 @@
 # gnlTester (2019+)
 
-Clone this tester in your gnl repository. (works on linux and mac, handles sigsegv on all tests, and timeout on mandatory part)
+Clone this tester in your gnl repository. (works on linux and mac, handles sigsegv on all tests, and timeout on mandatory part)  
+If all your tests are OK and the moulinette KO you, please contact me on slack/discord.
 ![alt text](https://i.imgur.com/uupv1UH.png)
 
 # Commands
