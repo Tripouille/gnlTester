@@ -24,4 +24,5 @@ void gnl(int fd, int r, char * s)
 		mcheck(line, strlen(s) + 1);
 	if (gnlReturn != -1)
 		free(line);
+	iTest++;
 }
