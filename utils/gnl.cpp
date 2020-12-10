@@ -19,7 +19,7 @@ void gnl(int fd, int r, char * s)
 {
 	char * line = NULL;
 	int gnlReturn = get_next_line(fd, &line);
-	check(r == gnlReturn && s == NULL ? line == NULL : !strcmp(line, s));
+	check(r == gnlReturn && (s == NULL ? line == NULL : !strcmp(line, s)));
 	if (s != NULL)
 		mcheck(line, strlen(s) + 1);
 	if (gnlReturn != -1)
