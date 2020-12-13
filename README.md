@@ -1,7 +1,8 @@
 # gnlTester (2019+)
 
-Clone this tester in your gnl repository. (works on linux and mac, handles sigsegv on all tests, and timeout on mandatory part)  
-If all your tests are OK and the moulinette KO you, please contact me on slack/discord.
+Tester for the project get next line of 42 school.  
+If all your tests are OK and the moulinette KO you, please contact me on slack/discord.  
+Clone this tester in your get_next_line repository. (works on linux and mac, handles sigsegv on all tests, and timeout on mandatory part)  
 ![alt text](https://i.imgur.com/uupv1UH.png)
 
 # Commands
