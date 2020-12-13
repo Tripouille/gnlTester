@@ -15,7 +15,7 @@ extern int iTest;
 
 using namespace std;
 
-void gnl(int fd, int r, char * s)
+void gnl(int fd, int r, char const * s)
 {
 	char * line = NULL;
 	int gnlReturn = get_next_line(fd, &line);
