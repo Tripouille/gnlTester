@@ -21,8 +21,8 @@ You can change the timeout value in Makefile
 
 # Outputs
 
-![alt text](https://i.imgur.com/b9hjjWn.png)
-![alt text](https://i.imgur.com/C0ul80f.png)
+![alt text](https://i.imgur.com/u4Li6AM.png)
+![alt text](https://i.imgur.com/KL3mc4F.png)
 
 MOK / MKO = test about your malloc size (this shouldn't be tested by moulinette)  
 
