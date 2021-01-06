@@ -47,64 +47,64 @@ VALGRIND				= valgrind -q --leak-check=full --show-reachable=yes
 
 $(1MANDATORY): 1%:
 	@gcc -D BUFFER_SIZE=1 $(CFLAGS) -c $(MANDATORY_FILES)
-	@clang++ -D BUFFER_SIZE=1 -D TIMEOUT_US=$(TIMEOUT_US) $(CPPFLAGS) -fsanitize=address $(UTILS) $(TESTS_PATH)$*.cpp $(MANDATORY_OBJS) && ./a.out < files/alternate_line_nl_with_nl && rm -f a.out
+	@clang++ -D BUFFER_SIZE=1 -D TIMEOUT_US=$(TIMEOUT_US) $(CPPFLAGS) $(UTILS) $(TESTS_PATH)$*.cpp $(MANDATORY_OBJS) -o gnlTest && ./gnlTest < files/alternate_line_nl_with_nl && rm -f gnlTest
 $(42MANDATORY): 42%:
 	@gcc -D BUFFER_SIZE=42 $(CFLAGS) -c $(MANDATORY_FILES)
-	@clang++ -D BUFFER_SIZE=42 -D TIMEOUT_US=$(TIMEOUT_US) $(CPPFLAGS) -fsanitize=address $(UTILS) $(TESTS_PATH)$*.cpp $(MANDATORY_OBJS) && ./a.out < files/alternate_line_nl_with_nl && rm -f a.out
+	@clang++ -D BUFFER_SIZE=42 -D TIMEOUT_US=$(TIMEOUT_US) $(CPPFLAGS) $(UTILS) $(TESTS_PATH)$*.cpp $(MANDATORY_OBJS) -o gnlTest && ./gnlTest < files/alternate_line_nl_with_nl && rm -f gnlTest
 $(10MMANDATORY): 10M%:
 	@gcc -D BUFFER_SIZE=10000000 $(CFLAGS) -c $(MANDATORY_FILES)
-	@clang++ -D BUFFER_SIZE=10000000 -D TIMEOUT_US=$(TIMEOUT_US) $(CPPFLAGS) -fsanitize=address $(UTILS) $(TESTS_PATH)$*.cpp $(MANDATORY_OBJS) && ./a.out < files/alternate_line_nl_with_nl && rm -f a.out
+	@clang++ -D BUFFER_SIZE=10000000 -D TIMEOUT_US=$(TIMEOUT_US) $(CPPFLAGS) $(UTILS) $(TESTS_PATH)$*.cpp $(MANDATORY_OBJS) -o gnlTest && ./gnlTest < files/alternate_line_nl_with_nl && rm -f gnlTest
 
 $(V1MANDATORY): v1%:
 	@gcc -D BUFFER_SIZE=1 $(CFLAGS) -c $(MANDATORY_FILES)
-	@clang++ -D BUFFER_SIZE=1 -D TIMEOUT_US=$(TIMEOUT_US) $(CPPFLAGS) $(UTILS) $(TESTS_PATH)$*.cpp $(MANDATORY_OBJS) && $(VALGRIND) ./a.out < files/alternate_line_nl_with_nl && rm -f a.out
+	@clang++ -D BUFFER_SIZE=1 -D TIMEOUT_US=$(TIMEOUT_US) $(CPPFLAGS) $(UTILS) $(TESTS_PATH)$*.cpp $(MANDATORY_OBJS) -o gnlTest && $(VALGRIND) ./gnlTest < files/alternate_line_nl_with_nl && rm -f gnlTest
 $(V42MANDATORY): v42%:
 	@gcc -D BUFFER_SIZE=42 $(CFLAGS) -c $(MANDATORY_FILES)
-	@clang++ -D BUFFER_SIZE=42 -D TIMEOUT_US=$(TIMEOUT_US) $(CPPFLAGS) $(UTILS) $(TESTS_PATH)$*.cpp $(MANDATORY_OBJS) && $(VALGRIND) ./a.out < files/alternate_line_nl_with_nl && rm -f a.out
+	@clang++ -D BUFFER_SIZE=42 -D TIMEOUT_US=$(TIMEOUT_US) $(CPPFLAGS) $(UTILS) $(TESTS_PATH)$*.cpp $(MANDATORY_OBJS) -o gnlTest && $(VALGRIND) ./gnlTest < files/alternate_line_nl_with_nl && rm -f gnlTest
 $(V10MMANDATORY): v10M%:
 	@gcc -D BUFFER_SIZE=10000000 $(CFLAGS) -c $(MANDATORY_FILES)
-	@clang++ -D BUFFER_SIZE=10000000 -D TIMEOUT_US=$(TIMEOUT_US) $(CPPFLAGS) $(UTILS) $(TESTS_PATH)$*.cpp $(MANDATORY_OBJS) && $(VALGRIND) ./a.out < files/alternate_line_nl_with_nl && rm -f a.out
+	@clang++ -D BUFFER_SIZE=10000000 -D TIMEOUT_US=$(TIMEOUT_US) $(CPPFLAGS) $(UTILS) $(TESTS_PATH)$*.cpp $(MANDATORY_OBJS) -o gnlTest && $(VALGRIND) ./gnlTest < files/alternate_line_nl_with_nl && rm -f gnlTest
 
 
 $(1MBONUS): m1%:
 	@gcc -D BUFFER_SIZE=1 $(CFLAGS) -c $(BONUS_FILES)
-	@clang++ -D BUFFER_SIZE=1 -D TIMEOUT_US=$(TIMEOUT_US) $(CPPFLAGS) -fsanitize=address $(UTILS) $(TESTS_PATH)$(MANDATORY).cpp $(BONUS_OBJS) && ./a.out < files/alternate_line_nl_with_nl && rm -f a.out
+	@clang++ -D BUFFER_SIZE=1 -D TIMEOUT_US=$(TIMEOUT_US) $(CPPFLAGS) $(UTILS) $(TESTS_PATH)$(MANDATORY).cpp $(BONUS_OBJS) -o gnlTest && ./gnlTest < files/alternate_line_nl_with_nl && rm -f gnlTest
 $(42MBONUS): m42%:
 	@gcc -D BUFFER_SIZE=42 $(CFLAGS) -c $(BONUS_FILES)
-	@clang++ -D BUFFER_SIZE=42 -D TIMEOUT_US=$(TIMEOUT_US) $(CPPFLAGS) -fsanitize=address $(UTILS) $(TESTS_PATH)$(MANDATORY).cpp $(BONUS_OBJS) && ./a.out < files/alternate_line_nl_with_nl && rm -f a.out
+	@clang++ -D BUFFER_SIZE=42 -D TIMEOUT_US=$(TIMEOUT_US) $(CPPFLAGS) $(UTILS) $(TESTS_PATH)$(MANDATORY).cpp $(BONUS_OBJS) -o gnlTest && ./gnlTest < files/alternate_line_nl_with_nl && rm -f gnlTest
 $(10MMBONUS): m10M%:
 	@gcc -D BUFFER_SIZE=10000000 $(CFLAGS) -c $(BONUS_FILES)
-	@clang++ -D BUFFER_SIZE=10000000 -D TIMEOUT_US=$(TIMEOUT_US) $(CPPFLAGS) -fsanitize=address $(UTILS) $(TESTS_PATH)$(MANDATORY).cpp $(BONUS_OBJS) && ./a.out < files/alternate_line_nl_with_nl && rm -f a.out
+	@clang++ -D BUFFER_SIZE=10000000 -D TIMEOUT_US=$(TIMEOUT_US) $(CPPFLAGS) $(UTILS) $(TESTS_PATH)$(MANDATORY).cpp $(BONUS_OBJS) -o gnlTest && ./gnlTest < files/alternate_line_nl_with_nl && rm -f gnlTest
 
 $(1BONUS): 1%:
 	@gcc -D BUFFER_SIZE=1 $(CFLAGS) -c $(BONUS_FILES)
-	@clang++ -D BUFFER_SIZE=1 -D TIMEOUT_US=$(TIMEOUT_US) $(CPPFLAGS) -fsanitize=address $(UTILS) $(TESTS_PATH)$*.cpp $(BONUS_OBJS) && ./a.out < files/alternate_line_nl_with_nl && rm -f a.out
+	@clang++ -D BUFFER_SIZE=1 -D TIMEOUT_US=$(TIMEOUT_US) $(CPPFLAGS) $(UTILS) $(TESTS_PATH)$*.cpp $(BONUS_OBJS) -o gnlTest && ./gnlTest < files/alternate_line_nl_with_nl && rm -f gnlTest
 $(42BONUS): 42%:
 	@gcc -D BUFFER_SIZE=42 $(CFLAGS) -c $(BONUS_FILES)
-	@clang++ -D BUFFER_SIZE=42 -D TIMEOUT_US=$(TIMEOUT_US) $(CPPFLAGS) -fsanitize=address $(UTILS) $(TESTS_PATH)$*.cpp $(BONUS_OBJS) && ./a.out < files/alternate_line_nl_with_nl && rm -f a.out
+	@clang++ -D BUFFER_SIZE=42 -D TIMEOUT_US=$(TIMEOUT_US) $(CPPFLAGS) $(UTILS) $(TESTS_PATH)$*.cpp $(BONUS_OBJS) -o gnlTest && ./gnlTest < files/alternate_line_nl_with_nl && rm -f gnlTest
 $(10MBONUS): 10M%:
 	@gcc -D BUFFER_SIZE=10000000 $(CFLAGS) -c $(BONUS_FILES)
-	@clang++ -D BUFFER_SIZE=10000000 -D TIMEOUT_US=$(TIMEOUT_US) $(CPPFLAGS) -fsanitize=address $(UTILS) $(TESTS_PATH)$*.cpp $(BONUS_OBJS) && ./a.out < files/alternate_line_nl_with_nl && rm -f a.out
+	@clang++ -D BUFFER_SIZE=10000000 -D TIMEOUT_US=$(TIMEOUT_US) $(CPPFLAGS) $(UTILS) $(TESTS_PATH)$*.cpp $(BONUS_OBJS) -o gnlTest && ./gnlTest < files/alternate_line_nl_with_nl && rm -f gnlTest
 
 $(V1MBONUS): vm1%:
 	@gcc -D BUFFER_SIZE=1 $(CFLAGS) -c $(BONUS_FILES)
-	@clang++ -D BUFFER_SIZE=1 -D TIMEOUT_US=$(TIMEOUT_US) $(CPPFLAGS) $(UTILS) $(TESTS_PATH)$(MANDATORY).cpp $(BONUS_OBJS) && $(VALGRIND) ./a.out < files/alternate_line_nl_with_nl && rm -f a.out
+	@clang++ -D BUFFER_SIZE=1 -D TIMEOUT_US=$(TIMEOUT_US) $(CPPFLAGS) $(UTILS) $(TESTS_PATH)$(MANDATORY).cpp $(BONUS_OBJS) -o gnlTest && $(VALGRIND) ./gnlTest < files/alternate_line_nl_with_nl && rm -f gnlTest
 $(V42MBONUS): vm42%:
 	@gcc -D BUFFER_SIZE=42 $(CFLAGS) -c $(BONUS_FILES)
-	@clang++ -D BUFFER_SIZE=42 -D TIMEOUT_US=$(TIMEOUT_US) $(CPPFLAGS) $(UTILS) $(TESTS_PATH)$(MANDATORY).cpp $(BONUS_OBJS) && $(VALGRIND) ./a.out < files/alternate_line_nl_with_nl && rm -f a.out
+	@clang++ -D BUFFER_SIZE=42 -D TIMEOUT_US=$(TIMEOUT_US) $(CPPFLAGS) $(UTILS) $(TESTS_PATH)$(MANDATORY).cpp $(BONUS_OBJS) -o gnlTest && $(VALGRIND) ./gnlTest < files/alternate_line_nl_with_nl && rm -f gnlTest
 $(V10MMBONUS): vm10M%:
 	@gcc -D BUFFER_SIZE=10000000 $(CFLAGS) -c $(BONUS_FILES)
-	@clang++ -D BUFFER_SIZE=10000000 -D TIMEOUT_US=$(TIMEOUT_US) $(CPPFLAGS) $(UTILS) $(TESTS_PATH)$(MANDATORY).cpp $(BONUS_OBJS) && $(VALGRIND) ./a.out < files/alternate_line_nl_with_nl && rm -f a.out
+	@clang++ -D BUFFER_SIZE=10000000 -D TIMEOUT_US=$(TIMEOUT_US) $(CPPFLAGS) $(UTILS) $(TESTS_PATH)$(MANDATORY).cpp $(BONUS_OBJS) -o gnlTest && $(VALGRIND) ./gnlTest < files/alternate_line_nl_with_nl && rm -f gnlTest
 
 $(V1BONUS): v1%:
 	@gcc -D BUFFER_SIZE=1 $(CFLAGS) -c $(BONUS_FILES)
-	@clang++ -D BUFFER_SIZE=1 -D TIMEOUT_US=$(TIMEOUT_US) $(CPPFLAGS) $(UTILS) $(TESTS_PATH)$*.cpp $(BONUS_OBJS) && $(VALGRIND) ./a.out < files/alternate_line_nl_with_nl && rm -f a.out
+	@clang++ -D BUFFER_SIZE=1 -D TIMEOUT_US=$(TIMEOUT_US) $(CPPFLAGS) $(UTILS) $(TESTS_PATH)$*.cpp $(BONUS_OBJS) -o gnlTest && $(VALGRIND) ./gnlTest < files/alternate_line_nl_with_nl && rm -f gnlTest
 $(V42BONUS): v42%:
 	@gcc -D BUFFER_SIZE=42 $(CFLAGS) -c $(BONUS_FILES)
-	@clang++ -D BUFFER_SIZE=42 -D TIMEOUT_US=$(TIMEOUT_US) $(CPPFLAGS) $(UTILS) $(TESTS_PATH)$*.cpp $(BONUS_OBJS) && $(VALGRIND) ./a.out < files/alternate_line_nl_with_nl && rm -f a.out
+	@clang++ -D BUFFER_SIZE=42 -D TIMEOUT_US=$(TIMEOUT_US) $(CPPFLAGS) $(UTILS) $(TESTS_PATH)$*.cpp $(BONUS_OBJS) -o gnlTest && $(VALGRIND) ./gnlTest < files/alternate_line_nl_with_nl && rm -f gnlTest
 $(V10MBONUS): v10M%:
 	@gcc -D BUFFER_SIZE=10000000 $(CFLAGS) -c $(BONUS_FILES)
-	@clang++ -D BUFFER_SIZE=10000000 -D TIMEOUT_US=$(TIMEOUT_US) $(CPPFLAGS) $(UTILS) $(TESTS_PATH)$*.cpp $(BONUS_OBJS) && $(VALGRIND) ./a.out < files/alternate_line_nl_with_nl && rm -f a.out
+	@clang++ -D BUFFER_SIZE=10000000 -D TIMEOUT_US=$(TIMEOUT_US) $(CPPFLAGS) $(UTILS) $(TESTS_PATH)$*.cpp $(BONUS_OBJS) -o gnlTest && $(VALGRIND) ./gnlTest < files/alternate_line_nl_with_nl && rm -f gnlTest
 
 mandatory_start: update
 	@tput setaf 4 && echo [Mandatory]
@@ -125,6 +125,6 @@ vb: bonus_start $(V1MBONUS) $(V42MBONUS) $(V10MMBONUS) $(V1BONUS) $(V42BONUS) $(
 va: vm vb
 
 clean cleanMandatory cleanBonus:
-	@rm -rf $(MANDATORY_OBJS) $(BONUS_OBJS) a.out
+	@rm -rf $(MANDATORY_OBJS) $(BONUS_OBJS) gnlTest
 
 .PHONY:	mandatory_start m vm bonus_start b vb a va clean cleanMandatory cleanBonus

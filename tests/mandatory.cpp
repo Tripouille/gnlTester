@@ -142,5 +142,8 @@ int main(void)
 		 /* 8 */ gnl(0, 1, "");
 		 /* 9 */ gnl(0, 1, "01234567890123456789012345678901234567890");
 		 /* 10 */ gnl(0, 0, "");) cout << ENDL; close(fd);
+	#ifdef __APPLE__
+		system("leaks -quiet gnlTest");
+	#endif
 	return (0);
 }

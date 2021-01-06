@@ -47,7 +47,9 @@ int main(void)
 	/* 13 */ gnl(1006, -1, NULL);
 	/* 14 */ gnl(fd[3], 1, "");
 	/* 15 */ gnl(1007, -1, NULL);
-	/* 16 */ gnl(fd[3], 0, "");
-	cout << ENDL;
+	/* 16 */ gnl(fd[3], 0, ""); cout << ENDL;
+	#ifdef __APPLE__
+		system("leaks -quiet gnlTest");
+	#endif
 	return (0);
 }
