@@ -1,6 +1,6 @@
 # gnlTester (2019+)
 
-Tester for the get next line project of 42 school.  
+Tester for the get next line project of 42 school (now with personalized leaks checking, no valgrind required)    
 If all your tests are OK and the moulinette KO you, please contact me on slack/discord.  
 Clone this tester in your get_next_line repository. (works on linux and mac, handles sigsegv on all tests, and timeout on mandatory part)  
 ![alt text](https://i.imgur.com/uupv1UH.png)
@@ -10,9 +10,6 @@ make m = launch mandatory tests
 make b = launch bonus tests  
 make a = launch mandatory tests + bonus tests 
 
-make vm = launch mandatory tests with valgrind  
-make vb = launch bonus tests with valgrind  
-make va = launch mandatory tests + bonus tests with valgrind  
 
 You can change the timeout value in Makefile    
 ![alt text](https://i.imgur.com/jUimpaC.png)  
