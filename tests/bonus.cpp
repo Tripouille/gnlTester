@@ -19,9 +19,9 @@ int iTest = 1;
 int main(void)
 {
 	signal(SIGSEGV, sigsegv); int fd[4];
-	cout << FG_LGRAY << "[BUFFER_SIZE = " << BUFFER_SIZE << "]: " << ENDL;
+	title("[BUFFER_SIZE = " << BUFFER_SIZE << "]: " << ENDL)
 	
-	cout << FG_LGRAY << "multiple fd: "; cout.flush();
+	title("multiple fd: ")
 	fd[0] = open("files/41_with_nl", O_RDWR);
 	/* 1 */ gnl(1000, -1, NULL);
 	/* 2 */ gnl(fd[0], 1, "0123456789012345678901234567890123456789");
@@ -42,14 +42,13 @@ int main(void)
 
 	/* 11 */ gnl(1005, -1, NULL);
 	/* 12 */ gnl(fd[2], 0, "2");
-
+	showLeaks();
 	fd[3] = open("files/nl", O_RDWR);
 	/* 13 */ gnl(1006, -1, NULL);
 	/* 14 */ gnl(fd[3], 1, "");
 	/* 15 */ gnl(1007, -1, NULL);
-	/* 16 */ gnl(fd[3], 0, ""); cout << ENDL;
-	#ifdef __APPLE__
-		system("leaks -quiet gnlTest");
-	#endif
+	/* 16 */ gnl(fd[3], 0, "");
+	showLeaks();
+	write(1, "\n", 1);
 	return (0);
 }
