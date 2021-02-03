@@ -78,6 +78,13 @@ bonus_start: update
 update:
 	@git pull
 
+dockerm dockerb dockera: docker%:
+	@docker rm -f mc > /dev/null 2>&1 || true
+	docker build -qt mi .
+	docker run -dti --name mc -v $(shell dirname $(shell pwd)):/project/ mi
+	docker exec -ti mc make $* -C gnlTester || true
+	@docker rm -f mc > /dev/null 2>&1
+
 m: mandatory_start $(1MANDATORY) $(42MANDATORY) $(10MMANDATORY) cleanMandatory
 b: bonus_start $(1MBONUS) $(42MBONUS) $(10MMBONUS) $(1BONUS) $(42BONUS) $(10MBONUS) cleanBonus
 a: m b
