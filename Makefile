@@ -72,7 +72,7 @@ mandatory_start: update
 	@tput setaf 4 && echo [Mandatory]
 
 bonus_start: update
-	@tput setaf 3 && printf "[Static = " && cat ../*bonus* | grep static | wc -l | tr -d '\n' | xargs /bin/echo -n && printf "]\n"
+	tput setaf 3 && printf "[Static = " && cat ../*bonus.c | grep -E 'static.*;' | wc -l | tr -d '\n' | xargs /bin/echo -n && printf "]\n"
 	@tput setaf 5 && /bin/echo [Bonus]
 
 update:
