@@ -2,17 +2,18 @@ TIMEOUT_US				= 1000000
 
 .DEFAULT_GOAL			= a
 UTILS					= utils/sigsegv.cpp utils/color.cpp utils/check.cpp utils/gnl.cpp utils/leaks.cpp
+GNL_PATH				= ..
 TESTS_PATH				= tests/
 SHELL					= bash
 
 
-MANDATORY_HEADER		= ../get_next_line.h
-MANDATORY_FILES			= ../get_next_line.c ../get_next_line_utils.c
-MANDATORY_OBJS			= $(MANDATORY_FILES:../%.c=%.o)
+MANDATORY_HEADER		= $(GNL_PATH)/get_next_line.h
+MANDATORY_FILES			= $(GNL_PATH)/get_next_line.c $(GNL_PATH)/get_next_line_utils.c
+MANDATORY_OBJS			= $(MANDATORY_FILES:$(GNL_PATH)/%.c=%.o)
 
-BONUS_HEADER			= ../get_next_line_bonus.h
-BONUS_FILES				= ../get_next_line_bonus.c ../get_next_line_utils_bonus.c
-BONUS_OBJS				= $(BONUS_FILES:../%.c=%.o)
+BONUS_HEADER			= $(GNL_PATH)/get_next_line_bonus.h
+BONUS_FILES				= $(GNL_PATH)/get_next_line_bonus.c $(GNL_PATH)/get_next_line_utils_bonus.c
+BONUS_OBJS				= $(BONUS_FILES:$(GNL_PATH)/%.c=%.o)
 
 MANDATORY				= mandatory
 1MANDATORY				= $(addprefix 1, $(MANDATORY))
@@ -30,7 +31,7 @@ BONUS					= bonus
 10MBONUS				= $(addprefix 10M, $(BONUS))
 
 CFLAGS					= -Wall -Wextra -Werror
-CPPFLAGS				= -g3 -ldl -std=c++11 -I utils/ -I.. -Wno-everything
+CPPFLAGS				= -g3 -ldl -std=c++11 -I utils/ -I$(GNL_PATH) -Wno-everything
 
 UNAME = $(shell uname -s)
 ifeq ($(UNAME), Linux)
@@ -72,7 +73,7 @@ mandatory_start: update
 	@tput setaf 4 && echo [Mandatory]
 
 bonus_start: update
-	tput setaf 3 && printf "[Static = " && cat ../*bonus.c | grep -E 'static.*;' | wc -l | tr -d '\n' | xargs /bin/echo -n && printf "]\n"
+	tput setaf 3 && printf "[Static = " && cat $(GNL_PATH)/*bonus.c | grep -E 'static.*;' | wc -l | tr -d '\n' | xargs /bin/echo -n && printf "]\n"
 	@tput setaf 5 && /bin/echo [Bonus]
 
 update:
