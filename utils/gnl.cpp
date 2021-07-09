@@ -15,13 +15,13 @@ extern int iTest;
 
 using namespace std;
 
-void gnl(int fd, int r, char const * s)
+void gnl(int fd, char const * expectedReturn)
 {
-	char * line = NULL;
-	int gnlReturn = get_next_line(fd, &line);
-	check(r == gnlReturn && (s == NULL ? line == NULL : !strcmp(line, s)));
-	if (s != NULL)
-		mcheck(line, strlen(s) + 1);
-	free(line);
+	char *  gnlReturn = get_next_line(fd);
+	if (expectedReturn == NULL)
+		check(gnlReturn == NULL);
+	else
+		check(!strcmp(gnlReturn, expectedReturn));
+	free(gnlReturn);
 	iTest++;
 }
