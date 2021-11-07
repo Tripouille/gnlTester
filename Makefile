@@ -29,7 +29,7 @@ BONUS					= bonus
 42BONUS					= $(addprefix 42, $(BONUS))
 10MBONUS				= $(addprefix 10M, $(BONUS))
 
-CFLAGS					= -Wall -Wextra -Werror
+CFLAGS					= -g3 -Wall -Wextra -Werror
 CPPFLAGS				= -g3 -ldl -std=c++11 -I utils/ -I.. -Wno-everything
 
 UNAME = $(shell uname -s)
