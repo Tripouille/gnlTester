@@ -42,12 +42,17 @@ int main(void)
 
 	/* 11 */ gnl(1005, NULL);
 	/* 12 */ gnl(fd[2], "2");
+
+	/* 13 */ gnl(fd[0], NULL);
+	/* 14 */ gnl(fd[1], NULL);
+	/* 15 */ gnl(fd[2], NULL);
 	showLeaks();
+
 	fd[3] = open("files/nl", O_RDWR);
-	/* 13 */ gnl(1006, NULL);
-	/* 14 */ gnl(fd[3], "\n");
-	/* 15 */ gnl(1007, NULL);
-	/* 16 */ gnl(fd[3], NULL);
+	/* 16 */ gnl(1006, NULL);
+	/* 17 */ gnl(fd[3], "\n");
+	/* 18 */ gnl(1007, NULL);
+	/* 19 */ gnl(fd[3], NULL);
 	showLeaks();
 	write(1, "\n", 1);
 	return (0);
