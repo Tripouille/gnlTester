@@ -52,6 +52,13 @@ int main(void)
 	TEST(/* 1 */ gnl(fd, "012345678901234567890123456789012345678901");
 		/* 2 */ gnl(fd, NULL);) cout << ENDL; close(fd);
 
+	title("files/static_being_freed: ")
+	fd = open("files/static_being_freed", O_RDWR);
+	TEST(/* 1 */ gnl(fd, "012345678901234567890123456789012345678901\n");
+		/* 2 */ gnl(fd, "\n");
+		/* 3 */ gnl(fd, NULL);
+		/* 4 */ gnl(fd, NULL);) cout << ENDL; close(fd);
+	
 	title("files/42_with_nl: ")
 	fd = open("files/42_with_nl", O_RDWR);
 	TEST(/* 1 */ gnl(fd, "01234567890123456789012345678901234567890\n");
