@@ -1,6 +1,18 @@
+#include <cstdio>
 #include "leaks.hpp"
 
 std::vector<ptr> mallocList;
+
+static void *(*libc_malloc)(size_t) = NULL;
+bool is_initializing;
+// https://stackoverflow.com/questions/6083337
+static void mtrace_init(void)
+{
+	is_initializing = true;
+	libc_malloc = (void *(*)(size_t))dlsym(RTLD_NEXT, "malloc");
+	if (NULL == libc_malloc)
+		fprintf(stderr, "Error in `dlsym`: %s\n", dlerror());
+}
 
 bool operator==(ptr const & p1, ptr const & p2)
 {
@@ -14,10 +26,12 @@ void * malloc(size_t size)
 void * malloc(size_t size) throw()
 #endif
 {
-    void *(*libc_malloc)(size_t) = (void *(*)(size_t))dlsym(RTLD_NEXT, "malloc");
-    void * p = libc_malloc(size);
-    mallocListAdd(p, size);
-    return (p);
+	if(!libc_malloc)
+	mtrace_init();
+	void * p = libc_malloc(size);
+	if (!is_initializing)
+		mallocListAdd(p, size);
+	return (p);
 }
 
 #ifdef __APPLE__
@@ -34,7 +48,10 @@ void free(void * p) throw()
 
 void mallocListAdd(void * p, size_t size)
 {
-    mallocList.push_back(ptr(p, size));
+	bool old_is_initializing = is_initializing;
+	is_initializing = true;
+	mallocList.push_back(ptr(p, size));
+	is_initializing = old_is_initializing;
 }
 
 void mallocListRemove(void * p)
@@ -46,12 +63,18 @@ void mallocListRemove(void * p)
 
 void showLeaks(void)
 {
-    if (mallocList.size() != 0)
-    {
-        std::ostringstream ss; ss << FG_RED << "LEAKS.KO "; write(1, ss.str().c_str(), ss.str().size());
-        std::vector<ptr>::iterator it = mallocList.begin(); std::vector<ptr>::iterator ite = mallocList.end();
-        for (; it != ite; ++it)
-            {std::ostringstream ss; ss << "[" << it->p << " : " << it->size << "] "; write(1, ss.str().c_str(), ss.str().size());}
-    }
-    mallocList.clear();
+	if (mallocList.size() != 0)
+	{
+		std::ostringstream ss;
+		ss << FG_RED << "LEAKS.KO ";
+		write(1, ss.str().c_str(), ss.str().size());
+
+		std::vector<ptr>::iterator it = mallocList.begin();
+		std::vector<ptr>::iterator ite = mallocList.end();
+		for (; it != ite; ++it) {
+			ss << "[" << it->p << " : " << it->size << "] ";
+			write(1, ss.str().c_str(), ss.str().size());
+		}
+	}
+	mallocList.clear();
 }
