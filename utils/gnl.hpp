@@ -1,7 +1,6 @@
 #ifndef GNL_HPP
 # define GNL_HPP
 # include "leaks.hpp"
-# include <ctime>
 
 //Don't do that at home
 #define TEST(x) { \
