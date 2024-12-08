@@ -15,9 +15,13 @@ extern "C"
 #include "check.hpp"
 #include "gnl.hpp"
 
+//https://github.com/arhuaco/ram-is-mine/blob/master/src/ram_is_mine.c
+extern bool is_initializing;
+
 int iTest = 1;
 int main(void)
 {
+	is_initializing = false;
 	signal(SIGSEGV, sigsegv); int fd;
 	title("[BUFFER_SIZE = " << BUFFER_SIZE << "]: " << ENDL)
 	title("Invalid fd: ")
