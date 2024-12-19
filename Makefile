@@ -38,34 +38,34 @@ ifeq ($(UNAME), Linux)
 endif
 
 $(1MANDATORY): 1%:
-	@gcc -D BUFFER_SIZE=1 $(CFLAGS) -c $(MANDATORY_FILES)
+	@gcc -D BUFFER_SIZE=1 $(CFLAGS) -c $(MANDATORY_FILES) -gdwarf-4
 	@clang++ -D BUFFER_SIZE=1 -gdwarf-4 -D TIMEOUT_US=$(TIMEOUT_US) $(CPPFLAGS) $(UTILS) $(TESTS_PATH)$*.cpp $(MANDATORY_OBJS) -o gnlTest && $(VALGRIND) ./gnlTest < files/alternate_line_nl_with_nl && rm -f gnlTest
 $(42MANDATORY): 42%:
-	@gcc -D BUFFER_SIZE=42 $(CFLAGS) -c $(MANDATORY_FILES)
+	@gcc -D BUFFER_SIZE=42 $(CFLAGS) -c $(MANDATORY_FILES) -gdwarf-4
 	@clang++ -D BUFFER_SIZE=42 -gdwarf-4 -D TIMEOUT_US=$(TIMEOUT_US) $(CPPFLAGS) $(UTILS) $(TESTS_PATH)$*.cpp $(MANDATORY_OBJS) -o gnlTest && $(VALGRIND) ./gnlTest < files/alternate_line_nl_with_nl && rm -f gnlTest
 $(10MMANDATORY): 10M%:
-	@gcc -D BUFFER_SIZE=10000000 $(CFLAGS) -c $(MANDATORY_FILES)
+	@gcc -D BUFFER_SIZE=10000000 $(CFLAGS) -c $(MANDATORY_FILES) -gdwarf-4
 	@clang++ -D BUFFER_SIZE=10000000 -gdwarf-4 -D TIMEOUT_US=$(TIMEOUT_US) $(CPPFLAGS) $(UTILS) $(TESTS_PATH)$*.cpp $(MANDATORY_OBJS) -o gnlTest && $(VALGRIND) ./gnlTest < files/alternate_line_nl_with_nl && rm -f gnlTest
 
 
 $(1BONUS): 1%:
-	@gcc -D BUFFER_SIZE=1 $(CFLAGS) -c $(BONUS_FILES)
+	@gcc -D BUFFER_SIZE=1 $(CFLAGS) -c $(BONUS_FILES) -gdwarf-4
 	@clang++ -D BUFFER_SIZE=1 -gdwarf-4 -D TIMEOUT_US=$(TIMEOUT_US) $(CPPFLAGS) $(UTILS) $(TESTS_PATH)$*.cpp $(BONUS_OBJS) -o gnlTest && $(VALGRIND) ./gnlTest < files/alternate_line_nl_with_nl && rm -f gnlTest
 $(42BONUS): 42%:
-	@gcc -D BUFFER_SIZE=42 $(CFLAGS) -c $(BONUS_FILES)
+	@gcc -D BUFFER_SIZE=42 $(CFLAGS) -c $(BONUS_FILES) -gdwarf-4
 	@clang++ -D BUFFER_SIZE=42 -gdwarf-4 -D TIMEOUT_US=$(TIMEOUT_US) $(CPPFLAGS) $(UTILS) $(TESTS_PATH)$*.cpp $(BONUS_OBJS) -o gnlTest && $(VALGRIND) ./gnlTest < files/alternate_line_nl_with_nl && rm -f gnlTest
 $(10MBONUS): 10M%:
-	@gcc -D BUFFER_SIZE=10000000 $(CFLAGS) -c $(BONUS_FILES)
+	@gcc -D BUFFER_SIZE=10000000 $(CFLAGS) -c $(BONUS_FILES) -gdwarf-4
 	@clang++ -D BUFFER_SIZE=10000000 -gdwarf-4 -D TIMEOUT_US=$(TIMEOUT_US) $(CPPFLAGS) $(UTILS) $(TESTS_PATH)$*.cpp $(BONUS_OBJS) -o gnlTest && $(VALGRIND) ./gnlTest < files/alternate_line_nl_with_nl && rm -f gnlTest
 
 $(1MBONUS): m1%:
-	@gcc -D BUFFER_SIZE=1 $(CFLAGS) -c $(BONUS_FILES)
+	@gcc -D BUFFER_SIZE=1 $(CFLAGS) -c $(BONUS_FILES) -gdwarf-4
 	@clang++ -D BUFFER_SIZE=1 -gdwarf-4 -D TIMEOUT_US=$(TIMEOUT_US) $(CPPFLAGS) $(UTILS) $(TESTS_PATH)$(MANDATORY).cpp $(BONUS_OBJS) -o gnlTest && $(VALGRIND) ./gnlTest < files/alternate_line_nl_with_nl && rm -f gnlTest
 $(42MBONUS): m42%:
-	@gcc -D BUFFER_SIZE=42 $(CFLAGS) -c $(BONUS_FILES)
+	@gcc -D BUFFER_SIZE=42 $(CFLAGS) -c $(BONUS_FILES) -gdwarf-4
 	@clang++ -D BUFFER_SIZE=42 -gdwarf-4 -D TIMEOUT_US=$(TIMEOUT_US) $(CPPFLAGS) $(UTILS) $(TESTS_PATH)$(MANDATORY).cpp $(BONUS_OBJS) -o gnlTest && $(VALGRIND) ./gnlTest < files/alternate_line_nl_with_nl && rm -f gnlTest
 $(10MMBONUS): m10M%:
-	@gcc -D BUFFER_SIZE=10000000 $(CFLAGS) -c $(BONUS_FILES)
+	@gcc -D BUFFER_SIZE=10000000 $(CFLAGS) -c $(BONUS_FILES) -gdwarf-4
 	@clang++ -D BUFFER_SIZE=10000000 -gdwarf-4 -D TIMEOUT_US=$(TIMEOUT_US) $(CPPFLAGS) $(UTILS) $(TESTS_PATH)$(MANDATORY).cpp $(BONUS_OBJS) -o gnlTest && $(VALGRIND) ./gnlTest < files/alternate_line_nl_with_nl && rm -f gnlTest
 
 mandatory_start: update
