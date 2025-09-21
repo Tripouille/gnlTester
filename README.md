@@ -3,6 +3,8 @@ Tester for the get next line project of 42 school (with personalized leaks check
 Clone this tester in your get_next_line repository. (works on linux and mac, handles sigsegv on all tests, and timeout on mandatory part)  
 ![alt text](https://i.imgur.com/uupv1UH.png)
 
+# New feature
+you can now accelerate the test by using the flag `make <option [m|b|a] -j<nproc>`  to test even more quickly. using parallel job from makefile command without racing condition!
 
 # Commands
 make m = launch mandatory tests  
