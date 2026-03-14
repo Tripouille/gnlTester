@@ -85,9 +85,17 @@ $(10MMBONUS): m10M%:
 	@clang++ -D BUFFER_SIZE=10000000 -gdwarf-4 -D TIMEOUT_US=$(TIMEOUT_US) $(CPPFLAGS) $(UTILS) $(TESTS_PATH)$(MANDATORY).cpp $(B10M_OBJS) -o gnlTest_mbs10M && $(VALGRIND) ./gnlTest_mbs10M < files/alternate_line_nl_with_nl && rm -f gnlTest_mbs10M
 
 mandatory_start: update
+	@for file in $(MANDATORY_FILES); do \
+		grep -qE '#[[:space:]]*include[[:space:]]*"get_next_line\.h"' $$file \
+		|| { tput setaf 1; echo "KO: $$file must include \"get_next_line.h\""; tput sgr0; exit 1; }; \
+	done
 	@tput setaf 4 && echo [Mandatory]
 
 bonus_start: update
+	@for file in $(BONUS_FILES); do \
+		grep -qE '#[[:space:]]*include[[:space:]]*"get_next_line_bonus\.h"' $$file \
+		|| { tput setaf 1; echo "KO: $$file must include \"get_next_line_bonus.h\""; tput sgr0; exit 1; }; \
+	done
 	@tput setaf 3 && printf "[Static = " && cat ../*bonus.c | grep -E 'static.*;' | wc -l | tr -d '\n' | xargs /bin/echo -n && printf "]\n"
 	@tput setaf 5 && /bin/echo [Bonus]
 
