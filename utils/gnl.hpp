@@ -8,6 +8,7 @@
 	int test = fork(); \
 	if (test == 0) { \
 		x showLeaks(); \
+		cout << FG_DEFAULT; \
 		exit(EXIT_SUCCESS); \
 	} else { \
 		int nb_sleep = 0; \
@@ -20,7 +21,7 @@
 		if (waitpid(test, &status, WNOHANG) == 0) \
 		{ \
 			kill(test, 9); \
-			cout << FG_RED << "TIMEOUT"; \
+			cout << FG_RED << "TIMEOUT" << FG_DEFAULT; \
 		} \
 	} \
 }
